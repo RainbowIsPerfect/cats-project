@@ -35,7 +35,7 @@ export class Modal {
         }
     }
     render(method, cat) {
-        document.body.querySelector('.modal__content').insertAdjacentHTML('beforeend', `<h2 class="modal__heading">Add new cat</h2>
+        document.body.querySelector('.modal__content').insertAdjacentHTML('beforeend', `<h2 class="modal__heading">${cat === undefined ? "Add new cat" : "Cat info"}</h2>
         <form class="modal__form form" action="${method}">
             <div class="form__option">
                 <label class="form__label" for="">Name</label>
@@ -62,11 +62,16 @@ export class Modal {
                 <textarea class="form__textarea" placeholder="Tell us about your cat" rows="4" name="description">${cat === undefined ? "" : cat.description}</textarea>
             </div>
             <div class="form__button-container">
-                <button class="form__button" type="submit">Add</button>
+                <button class="form__button" type="submit">${cat === undefined ? "Add" : "Change"}</button>
                 <button class="form__button" type="reset">Reset</button>
             </div>
         </form>`);
-        this.events(cat === undefined, cat.id);
+        if (cat === undefined) {
+            this.events(true);
+        }
+        else {
+            this.events(false, cat.id);
+        }
         this.open();
     }
     async handleForm(method, id) {
@@ -109,7 +114,6 @@ export class Modal {
                     }
                 }
             });
-            console.log();
             ifAdd ? fetch.add(newCat) : fetch.change(newCat, id);
             this.close(event, true);
         });
