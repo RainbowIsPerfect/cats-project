@@ -4,7 +4,7 @@ class Form {
     constructor($form) {
         this.$form = $form;
     }
-    createObject(id) {
+    createCatObject(id) {
         return {
             id: id || Date.now(),
             name: this.$form.elements['name'].value,
@@ -19,14 +19,14 @@ class Form {
 export class AddForm extends Form {
     constructor($form) {
         super($form);
-        this.events();
+        this.initEvents();
     }
-    events() {
+    initEvents() {
         this.$form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const currentCat = super.createObject();
+            const currentCat = super.createCatObject();
             fetch.addNewCat(currentCat);
-            cards.create(currentCat);
+            cards.createNewCard(currentCat);
             addModal.close();
         });
     }
@@ -36,9 +36,9 @@ export class EditForm extends Form {
     constructor($form) {
         super($form);
         this.id;
-        this.events();
+        this.initEvents();
     }
-    async fill(id) {
+    async fillForm(id) {
         const cat = await fetch.getCatByID(id);
         this.$form.elements['name'].value = cat.name;
         this.$form.elements['image'].value = cat.image;
@@ -48,12 +48,12 @@ export class EditForm extends Form {
         this.$form.elements['description'].value = cat.description;
         this.id = id;
     }
-    events() {
+    initEvents() {
         this.$form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const newCat = super.createObject(this.id);
-            fetch.change(this.id, super.createObject(this.id));
-            cards.update(this.id, newCat);
+            const newCat = super.createCatObject(this.id);
+            fetch.change(this.id, super.createCatObject(this.id));
+            cards.updateCardByID(this.id, newCat);
             editModal.close();
         });
     }

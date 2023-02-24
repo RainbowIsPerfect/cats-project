@@ -20,6 +20,7 @@ export class Modal {
         };
         this.animations = ["none", "fadeIn", "zoomIn", "fadeInDown", "fadeInUp", "bounce"];
         this.options = { ...this.default, ...options };
+        console.log(this.options);
         this.setOptions();
         this.events();
     }

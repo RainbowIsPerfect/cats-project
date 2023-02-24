@@ -1,43 +1,31 @@
 import { Fetch } from "./fetch.js";
 import { AddForm, EditForm } from "./forms.js";
-import { url, $addModal, $addModalContent, $readMoreModal, $readMoreModalContent, $addForm, $editForm, $editModal, $editModalContent, $addButton, $cardContainer } from "./variables.js";
 import { CatCards } from "./card-functions.js";
 import { Modal, DescriptionModal } from "./modal.js";
+// import { url, $addModal, $addModalContent, $readMoreModal, $readMoreModalContent, $addForm, $editForm, $editModal, $editModalContent, $addButton, $cardContainer} from "./variables.js";
+const db = "rainbowisperfect";
+const url = `https://cats.petiteweb.dev/api/single/${db}/`;
+const $cardContainer = document.querySelector(".card-container");
+const $addModal = document.querySelector("[data-modal='add']");
+const $addModalContent = $addModal.querySelector(".modal__content");
+const $editModal = document.querySelector("[data-modal='edit']");
+const $readMoreModal = document.querySelector("[data-modal='read']");
+const $readMoreModalContent = $readMoreModal.querySelector(".modal__content");
+const $editModalContent = $editModal.querySelector(".modal__content");
+const $addForm = document.forms['add-form'];
+const $editForm = document.forms['edit-form'];
+const $addButton = document.querySelector("[data-add]");
 export const fetch = new Fetch(url);
 export const addModal = new Modal($addModal, $addModalContent);
 export const editModal = new Modal($editModal, $editModalContent);
-const readMoreModal = new DescriptionModal($readMoreModal, $readMoreModalContent);
-const addForm = new AddForm($addForm);
-const editForm = new EditForm($editForm);
-export const cards = new CatCards($cardContainer);
-$addButton.addEventListener('click', () => {
-    addModal.open();
-});
-$cardContainer.addEventListener('click', (e) => {
-    if (e.target instanceof HTMLButtonElement) {
-        const $currentCard = event.target.closest('.card');
-        const currentId = Number($currentCard.dataset.id);
-        switch (e.target.dataset.action) {
-            case "delete":
-                fetch.deleteCatById(currentId);
-                cards.delete($currentCard);
-                break;
-            case "edit":
-                editForm.fill(currentId);
-                editModal.open();
-                break;
-            case "favorite":
-                const $icon = e.target.querySelector('.card__button-icon');
-                $icon.classList.toggle("card__button-icon--active");
-                fetch.makeCatFavorite(currentId, $icon.classList.contains("card__button-icon--active"));
-                break;
-            case "read":
-                readMoreModal.render(currentId);
-                readMoreModal.open();
-                break;
-            default:
-                break;
-        }
+export const readMoreModal = new DescriptionModal($readMoreModal, $readMoreModalContent, {
+    animation: {
+        animationType: "fadeInDown",
+        animationDuration: 0.3
     }
 });
-cards.display();
+export const addForm = new AddForm($addForm);
+export const editForm = new EditForm($editForm);
+export const cards = new CatCards($cardContainer);
+$addButton.addEventListener('click', () => addModal.open());
+cards.renderAllCards();
