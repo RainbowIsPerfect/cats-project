@@ -1,6 +1,12 @@
 const db = "rainbowisperfect";
 export const url = `https://cats.petiteweb.dev/api/single/${db}/`;
 export const $cardContainer = document.querySelector(".card-container");
-export const $modal = document.querySelector(".modal");
-export const $modalContent = $modal.querySelector(".modal__content");
+export const $addModal = document.querySelector("[data-modal='add']");
+export const $addModalContent = $addModal.querySelector(".modal__content");
+export const $editModal = document.querySelector("[data-modal='edit']");
+export const $readMoreModal = document.querySelector("[data-modal='read']");
+export const $readMoreModalContent = $readMoreModal.querySelector(".modal__content");
+export const $editModalContent = $editModal.querySelector(".modal__content");
+export const $addForm = document.forms['add-form'];
+export const $editForm = document.forms['edit-form'];
 export const $addButton = document.querySelector("[data-add]");

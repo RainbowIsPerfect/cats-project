@@ -1,25 +1,28 @@
-import { createCard } from "./card-functions.js";
 export class Fetch {
     url;
     constructor(url) {
         this.url = url;
     }
-    async display() {
+    async getAllCats() {
         const response = await fetch(`${this.url}show`);
         const data = await response.json();
-        data.forEach((cat) => createCard(cat));
+        console.log(data);
+        return data;
     }
-    async delete(id) {
+    async getCatByID(id) {
+        const response = await fetch(`${this.url}show/${id}`);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    async deleteCatById(id) {
         const response = await fetch(`${this.url}delete/${id}`, {
-            method: "DELETE",
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            method: "DELETE"
         });
         const data = await response.json();
         console.log(data);
     }
-    async add(object) {
+    async addNewCat(object) {
         const response = await fetch(`${this.url}add`, {
             method: "POST",
             headers: {
@@ -29,25 +32,19 @@ export class Fetch {
         });
         const data = await response.json();
         console.log(data);
-        createCard(object);
     }
-    async makeFavorite(id, isFavorite) {
+    async makeCatFavorite(id, isFavorite) {
         const response = await fetch(`${this.url}update/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ favorite: !isFavorite })
+            body: JSON.stringify({ favorite: isFavorite })
         });
         const data = await response.json();
         console.log(data);
     }
-    async showCurrent(id) {
-        const response = await fetch(`${this.url}show/${id}`);
-        const data = await response.json();
-        return data;
-    }
-    async change(object, id) {
+    async change(id, object) {
         const response = await fetch(`${this.url}update/${id}`, {
             method: "PUT",
             headers: {
