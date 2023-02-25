@@ -58,15 +58,16 @@ export class DescriptionModal extends Modal {
     constructor(element, content, options) {
         super(element, content, options);
     }
-    async render(id) {
+    async fill(id) {
         const cat = await fetch.getCatByID(id);
         const outputs = this.content.querySelectorAll('[data-info]');
         outputs.forEach(output => {
-            if (output instanceof HTMLParagraphElement) {
-                output.innerHTML = `<strong class="modal__bold-paragraph">${output.dataset.info}: </strong> ${cat[output.dataset.info] ? cat[output.dataset.info] : "No description provided"}`;
+            if (output instanceof HTMLSpanElement) {
+                output.innerHTML = cat[output.dataset.info] ? cat[output.dataset.info] : "Information is not provided";
             }
             else {
                 output.src = cat.image;
+                output.alt = `Cat named ${cat.name}`;
             }
         });
     }

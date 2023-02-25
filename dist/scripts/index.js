@@ -18,12 +18,7 @@ const $addButton = document.querySelector("[data-add]");
 export const fetch = new Fetch(url);
 export const addModal = new Modal($addModal, $addModalContent);
 export const editModal = new Modal($editModal, $editModalContent);
-export const readMoreModal = new DescriptionModal($readMoreModal, $readMoreModalContent, {
-    animation: {
-        animationType: "fadeInDown",
-        animationDuration: 0.3
-    }
-});
+export const readMoreModal = new DescriptionModal($readMoreModal, $readMoreModalContent);
 export const addForm = new AddForm($addForm);
 export const editForm = new EditForm($editForm);
 export const cards = new CatCards($cardContainer);
