@@ -46,7 +46,14 @@
         </footer>
         <div class="modal" data-modal="add">
             <div class="modal__container">
-                <div class="modal__content">
+                <div class="modal__content" data-content>
+                    <div class="modal__button-container">
+                        <button class="modal__button" data-close>
+                            <svg class="modal__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+                            </svg>
+                        </button>
+                    </div>
                     <h2 class="modal__heading">Add new cat</h2>
                     <form class="modal__form form" name="add-form">
                         <div class="form__option">
@@ -79,7 +86,14 @@
         </div>
         <div class="modal" data-modal="edit">
             <div class="modal__container">
-                <div class="modal__content">
+                <div class="modal__content" data-content>
+                    <div class="modal__button-container">
+                        <button class="modal__button" data-close>
+                            <svg class="modal__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+                            </svg>
+                        </button>
+                    </div>
                     <h2 class="modal__heading">Change cat info</h2>
                     <form class="modal__form form" name="edit-form">
                         <div class="form__option">
@@ -112,22 +126,29 @@
         </div>
         <div class="modal" data-modal="read">
             <div class="modal__container">
-                <div class="modal__content">
+                <div class="modal__content" data-content>
+                    <div class="modal__button-container">
+                        <button class="modal__button" data-close>
+                            <svg class="modal__button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+                            </svg>
+                        </button>
+                    </div>
                     <div class="modal__info">
                         <div class="modal__about">
                             <div class="modal__image-container">
                                 <img class="modal__image" src="#" alt="Image" data-info="image">
                             </div>
-                            <div class="modal__field-container" data-info="name">
+                            <div class="modal__field-container">
                                 <p class="modal__paragraph">Name: <span class="modal__span" data-info="name"></span></p>
                             </div>
-                            <div class="modal__field-container" data-info="name">
+                            <div class="modal__field-container">
                                 <p class="modal__paragraph">Age: <span class="modal__span" data-info="age"></span></p>
                             </div>
-                            <div class="modal__field-container" data-info="name">
+                            <div class="modal__field-container">
                                 <p class="modal__paragraph">Rate: <span class="modal__span" data-info="rate"></span></p>
                             </div>
-                            <div class="modal__field-container" data-info="name">
+                            <div class="modal__field-container">
                                 <p class="modal__paragraph">Description: <span class="modal__span" data-info="description"></span></p>
                             </div>
                         </div>

@@ -194,11 +194,20 @@ html, body {
 }
 
 .card__action-button {
-    padding: 0.75rem 0.75rem 0.4375rem 0.75rem;
+    padding: 0.625rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     margin-bottom: 0.3125rem;
     border-radius: 0.3125rem;
     border: 1px solid #b6b6b6;
-    background-color: #ebebeb;
+    background-color: transparent;
     cursor: pointer;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -229,6 +238,8 @@ html, body {
 
 .card__action-button-icon {
     fill: #171e29;
+    width: 20px;
+    height: 20px;
     pointer-events: none;
     -webkit-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -240,6 +251,7 @@ html, body {
 }
 
 .card__info {
+    font-weight: 600;
     font-size: 1.875rem;
     line-height: 1.5625rem;
     margin-bottom: 0.9375rem;
@@ -280,6 +292,9 @@ html, body {
     z-index: 1000;
     visibility: hidden;
     overflow: auto;
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
+    background-color: rgba(0, 0, 0, var(--opacity));
     -webkit-transition: background-color 0.2s ease-in-out;
     -o-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
@@ -291,16 +306,15 @@ html, body {
 
 .modal__container {
     margin: auto 0;
-    max-width: 1200px;
+    width: 400px;
     padding: 0.625rem;
 }
 
 .modal__content {
     display: none;
-    max-width: 600px;
     background-color: #fff;
     border-radius: 10px;
-    padding: 0.9375rem;
+    padding: 0.625rem;
 }
 
 .modal__content--active {
@@ -308,7 +322,6 @@ html, body {
 }
 
 .modal__heading {
-    padding: 0 1.875rem;
     margin-bottom: 0.3125rem;
     color: #171e29;
     text-align: center;
@@ -331,8 +344,13 @@ html, body {
     max-width: 37.5rem;
 }
 
+.modal__span {
+    font-weight: 400;
+}
+
 .modal__paragraph {
     color: #333333;
+    font-weight: 600;
 }
 
 .modal__image-container {
@@ -348,13 +366,49 @@ html, body {
     height: 100%;
 }
 
+.modal__button-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    margin-bottom: 0.125rem;
+}
+
+.modal__button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.25rem;
+    border-radius: 0.3125rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.modal__button:hover, .modal__button:focus-visible {
+    background-color: #dbdbdb;
+}
+
+.modal__button-icon {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
 @media (max-width: 500px) {
     .modal__container {
         padding: 0.3125rem;
-    }
-
-    .modal__content {
-        padding: 0.9375rem 0.625rem;
     }
 }
 

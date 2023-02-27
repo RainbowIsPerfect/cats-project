@@ -1,12 +1,14 @@
 const db = "rainbowisperfect";
 export const url = `https://cats.petiteweb.dev/api/single/${db}/`;
+export const localStorageKey = 'cat';
+export const activeIconClass = "card__action-button-icon--active";
+export const bodyHiddenClass = "hidden";
+export const modalActiveClass = "modal--active";
+export const modalContentActiveClass = "modal__content--active";
 export const $cardContainer = document.querySelector(".card-container");
 export const $addModal = document.querySelector("[data-modal='add']");
-export const $addModalContent = $addModal.querySelector(".modal__content");
 export const $editModal = document.querySelector("[data-modal='edit']");
 export const $readMoreModal = document.querySelector("[data-modal='read']");
-export const $readMoreModalContent = $readMoreModal.querySelector(".modal__content");
-export const $editModalContent = $editModal.querySelector(".modal__content");
 export const $addForm = document.forms['add-form'];
 export const $editForm = document.forms['edit-form'];
 export const $addButton = document.querySelector("[data-add]");
