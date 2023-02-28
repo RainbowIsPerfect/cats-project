@@ -1,4 +1,3 @@
-import { fetch, addModal, editModal, cards } from "./index.js";
 class Form {
     $form;
     constructor($form) {
@@ -24,31 +23,20 @@ class Form {
             }
         }
     }
+    addEvent(eventType, callBack) {
+        this.$form.addEventListener(eventType, callBack);
+        return this;
+    }
 }
 export class AddForm extends Form {
     localStorageKey;
     constructor($form, localStorageKey) {
         super($form);
-        this.initEvents();
         this.localStorageKey = localStorageKey;
     }
     fillFormWithLocalStorageData(key) {
         const localStorageData = JSON.parse(localStorage.getItem(key));
         this.fillFormFields(localStorageData);
-    }
-    initEvents() {
-        this.$form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            localStorage.removeItem(this.localStorageKey);
-            const currentCat = this.createCatObject();
-            fetch.addNewCat(currentCat);
-            cards.createNewCard(currentCat);
-            addModal.close();
-            this.$form.reset();
-        });
-        this.$form.addEventListener('input', () => {
-            localStorage.setItem(this.localStorageKey, JSON.stringify(this.createCatObject()));
-        });
     }
 }
 export class EditForm extends Form {
@@ -56,20 +44,9 @@ export class EditForm extends Form {
     constructor($form) {
         super($form);
         this.id;
-        this.initEvents();
     }
-    async fillForm(id) {
-        const cat = await fetch.getCatByID(id);
+    fillForm(id, cat) {
         this.fillFormFields(cat);
         this.id = id;
-    }
-    initEvents() {
-        this.$form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const newCat = super.createCatObject(this.id);
-            fetch.change(this.id, newCat);
-            cards.updateCardByID(this.id, newCat);
-            editModal.close();
-        });
     }
 }

@@ -1,4 +1,3 @@
-import { fetch } from "./index.js";
 import { bodyHiddenClass, modalActiveClass, modalContentActiveClass } from "./variables.js";
 export class Modal {
     element;
@@ -23,7 +22,7 @@ export class Modal {
         this.options = { ...this.default, ...options };
         this.setOverlayOptions();
         this.setContentOptions();
-        this.initEvents();
+        this.initDefaultEvents();
     }
     open() {
         this.classesHandler("add");
@@ -52,22 +51,25 @@ export class Modal {
         }
         this.element.setAttribute('style', properties);
     }
-    initEvents() {
-        this.element.addEventListener('click', (event) => {
+    initDefaultEvents() {
+        this.element.addEventListener('mousedown', (event) => {
             if (!event.target.closest(this.contentData) || event.target.dataset[this.closeButtonData] !== undefined) {
                 this.close();
             }
         });
     }
+    addEvent(eventType, callBack) {
+        this.element.addEventListener(eventType, callBack);
+        return this;
+    }
 }
 export class DescriptionModal extends Modal {
     fieldData;
-    constructor(element, options) {
+    constructor(element, fieldDataValue, options) {
         super(element, options);
-        this.fieldData = "[data-info]";
+        this.fieldData = fieldDataValue;
     }
-    async fill(id) {
-        const cat = await fetch.getCatByID(id);
+    fill(cat) {
         const outputs = this.content.querySelectorAll(this.fieldData);
         outputs.forEach(output => {
             if (output instanceof HTMLImageElement) {
