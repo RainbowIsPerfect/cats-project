@@ -1,6 +1,6 @@
 import { api } from "./fetch.js";
 import { AddForm, EditForm } from "./forms.js";
-import { CatCards } from "./card-functions.js";
+import { CatCards } from "./cards.js";
 import { Modal, DescriptionModal } from "./modal.js";
 import { $addModal, $editModal, $readMoreModal, $addForm, $editForm, $addButton, $cardContainer, localStorageKey, activeIconClass, fieldDataValue, cardDataValue, buttonActionsData } from "./variables.js";
 const addModal = new Modal($addModal);
@@ -58,7 +58,6 @@ const handleButtonClick = (e) => {
                 break;
         }
     }
-    ;
 };
 const addFormSubmitEvent = (e) => {
     e.preventDefault();
