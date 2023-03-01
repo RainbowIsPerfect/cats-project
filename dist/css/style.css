@@ -7,9 +7,9 @@
 
 @font-face {
     font-family: Poppins;
-  src: url(../fonts/Poppins-Bold.woff2);
-  font-display: swap;
-  font-weight: 700;
+    src: url(../fonts/Poppins-Bold.woff2);
+    font-display: swap;
+    font-weight: 700;
 }
 
 * {
@@ -19,7 +19,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
 }
@@ -214,7 +215,8 @@ html, body {
     transition: all 0.2s ease-in-out;
 }
 
-.card__action-button:hover, .card__action-button:focus-visible {
+.card__action-button:hover,
+.card__action-button:focus-visible {
     background-color: #dbdbdb;
 }
 
@@ -232,7 +234,8 @@ html, body {
     transition: all 0.2s ease-in-out;
 }
 
-.card__read-more-button:hover, .card__read-more-button:focus-visible {
+.card__read-more-button:hover,
+.card__read-more-button:focus-visible {
     background-color: #4c0fdb;
 }
 
@@ -384,7 +387,8 @@ html, body {
     transition: all 0.2s ease-in-out;
 }
 
-.modal__button:hover, .modal__button:focus-visible {
+.modal__button:hover,
+.modal__button:focus-visible {
     background-color: #dbdbdb;
 }
 
