@@ -14,7 +14,7 @@ export class CatCards {
     updateCardByID(id: number, cat: Cat): void {
         const $currentCat = this.cardContainer.querySelector(`[${cardFieldsData.id}="${id}"]`) as HTMLDivElement;
         const $currentCatInfo = $currentCat.querySelector(`[${cardFieldsData.info}]`) as HTMLParagraphElement;
-        const $currentCatFavorite = $currentCat.querySelector(`[${cardFieldsData.action}="${buttonActionsData.favorite}"]`).querySelector(LIKE_ICON_DATA) as SVGElement;
+        const $currentCatFavorite = $currentCat.querySelector(`[${cardFieldsData.action}="${buttonActionsData.favorite}"]`)!.querySelector(LIKE_ICON_DATA) as SVGElement;
         const $currentCatImage = $currentCat.querySelector(`[${cardFieldsData.image}]`) as HTMLImageElement;
         $currentCatInfo.innerHTML = `${cat.name} ${cat.age}`;
         $currentCatImage.src = `${cat.image}`;
