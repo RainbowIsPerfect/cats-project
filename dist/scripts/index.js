@@ -2,15 +2,15 @@ import { api } from "./fetch.js";
 import { AddForm, EditForm } from "./forms.js";
 import { CatCards } from "./cards.js";
 import { Modal, DescriptionModal } from "./modal.js";
-import { $addModal, $editModal, $readMoreModal, $addForm, $editForm, $addButton, $cardContainer, localStorageKey, activeIconClass, fieldDataValue, cardDataValue, buttonActionsData } from "./variables.js";
-const addModal = new Modal($addModal);
-const editModal = new Modal($editModal);
-const readMoreModal = new DescriptionModal($readMoreModal, fieldDataValue);
-const addForm = new AddForm($addForm, localStorageKey);
+import { LOCAL_STORAGE_KEY, ACTIVE_ICON_CLASS, FIELD_DATA, CARD_DATA, LIKE_ICON_DATA, MODAL_CONTENT_DATA, buttonActionsData, $addModal, $editModal, $readMoreModal, $addForm, $editForm, $addButton, $cardContainer } from "./variables.js";
+const addModal = new Modal($addModal, MODAL_CONTENT_DATA);
+const editModal = new Modal($editModal, MODAL_CONTENT_DATA);
+const readMoreModal = new DescriptionModal($readMoreModal, MODAL_CONTENT_DATA, FIELD_DATA);
+const addForm = new AddForm($addForm, LOCAL_STORAGE_KEY);
 const editForm = new EditForm($editForm);
 const cards = new CatCards($cardContainer);
-if (localStorage.getItem(localStorageKey)) {
-    addForm.fillFormWithLocalStorageData(localStorageKey);
+if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
+    addForm.fillFormWithLocalStorageData(LOCAL_STORAGE_KEY);
 }
 const renderAllCats = async () => {
     const data = await api.getAllCats();
@@ -24,12 +24,11 @@ const editButtonClickHandle = async (id) => {
 };
 const readButtonClickHandle = async (id) => {
     const cat = await api.getCatByID(id);
-    readMoreModal.fill(cat);
-    readMoreModal.open();
+    readMoreModal.fill(cat).open();
 };
 const favoriteButtonClickHandle = (id, $icon) => {
-    $icon.classList.toggle(activeIconClass);
-    api.makeCatFavorite(id, $icon.classList.contains(activeIconClass));
+    $icon.classList.toggle(ACTIVE_ICON_CLASS);
+    api.makeCatFavorite(id, $icon.classList.contains(ACTIVE_ICON_CLASS));
 };
 const deleteButtonClickHandle = (id, $card) => {
     api.deleteCatById(id);
@@ -37,7 +36,7 @@ const deleteButtonClickHandle = (id, $card) => {
 };
 const handleButtonClick = (e) => {
     if (e.target instanceof HTMLButtonElement) {
-        const $currentCard = e.target.closest(cardDataValue);
+        const $currentCard = e.target.closest(CARD_DATA);
         const currentId = Number($currentCard.dataset.id);
         const actionType = e.target.dataset.action;
         switch (actionType) {
@@ -48,7 +47,7 @@ const handleButtonClick = (e) => {
                 editButtonClickHandle(currentId);
                 break;
             case buttonActionsData.favorite:
-                const $icon = e.target.children[0];
+                const $icon = e.target.querySelector(LIKE_ICON_DATA);
                 favoriteButtonClickHandle(currentId, $icon);
                 break;
             case buttonActionsData.read:
@@ -61,14 +60,14 @@ const handleButtonClick = (e) => {
 };
 const addFormSubmitEvent = (e) => {
     e.preventDefault();
-    localStorage.removeItem(localStorageKey);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
     const currentCat = addForm.createCatObject();
     api.addNewCat(currentCat);
     cards.createNewCard(currentCat);
     addModal.close();
     $addForm.reset();
 };
-const saveDataToLocalStorage = () => localStorage.setItem(localStorageKey, JSON.stringify(addForm.createCatObject()));
+const saveDataToLocalStorage = () => localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(addForm.createCatObject()));
 const changeCatFormEvent = (e) => {
     e.preventDefault();
     const newCat = editForm.createCatObject(editForm.id);

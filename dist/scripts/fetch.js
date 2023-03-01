@@ -19,16 +19,18 @@ class Api {
         this.headers = config.getHeaders();
     }
     async getResponse(response) {
-        return response.ok ? response.json() : Promise.reject();
+        return response.ok ? response.json() : Promise.reject(new Error(`${response.status}`));
     }
     async getAllCats() {
         const response = await fetch(`${this.url}show`);
         const data = await this.getResponse(response);
+        console.log("getAllCats", data);
         return data;
     }
     async getCatByID(id) {
         const response = await fetch(`${this.url}show/${id}`);
         const data = await this.getResponse(response);
+        console.log("getCatByID", data);
         return data;
     }
     async deleteCatById(id) {
@@ -36,6 +38,7 @@ class Api {
             method: "DELETE"
         });
         const data = await this.getResponse(response);
+        console.log("deleteCatById", data);
         return data;
     }
     async addNewCat(object) {
@@ -45,6 +48,7 @@ class Api {
             body: JSON.stringify(object)
         });
         const data = await this.getResponse(response);
+        console.log("addNewCat", data);
         return data;
     }
     async makeCatFavorite(id, isFavorite) {
@@ -54,6 +58,7 @@ class Api {
             body: JSON.stringify({ favorite: isFavorite })
         });
         const data = await this.getResponse(response);
+        console.log("makeCatFavorite", data);
         return data;
     }
     async change(id, object) {
@@ -63,6 +68,7 @@ class Api {
             body: JSON.stringify(object)
         });
         const data = await this.getResponse(response);
+        console.log("change", data);
         return data;
     }
 }

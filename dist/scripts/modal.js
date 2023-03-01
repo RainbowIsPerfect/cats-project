@@ -1,4 +1,4 @@
-import { bodyHiddenClass, modalActiveClass, modalContentActiveClass } from "./variables.js";
+import { BODY_HIDDEN_CLASS, MODAL_ACTIVE_CLASS, MODAL_CONTENT_ACTIVE_CLASS } from "./variables.js";
 export class Modal {
     element;
     contentData;
@@ -7,9 +7,9 @@ export class Modal {
     options;
     animations;
     closeButtonData;
-    constructor(element, options) {
+    constructor(element, contentData, options) {
         this.element = element;
-        this.contentData = "[data-content]";
+        this.contentData = contentData;
         this.closeButtonData = "close";
         this.content = this.element.querySelector(this.contentData);
         this.default = {
@@ -31,9 +31,9 @@ export class Modal {
         this.classesHandler("remove");
     }
     classesHandler(action) {
-        document.body.classList[action](bodyHiddenClass);
-        this.element.classList[action](modalActiveClass);
-        this.content.classList[action](modalContentActiveClass);
+        document.body.classList[action](BODY_HIDDEN_CLASS);
+        this.element.classList[action](MODAL_ACTIVE_CLASS);
+        this.content.classList[action](MODAL_CONTENT_ACTIVE_CLASS);
     }
     setContentOptions() {
         if (this.animations.includes(this.options.animationType) && this.options.animationType !== "none") {
@@ -53,8 +53,10 @@ export class Modal {
     }
     initDefaultEvents() {
         this.element.addEventListener('mousedown', (event) => {
-            if (!event.target.closest(this.contentData) || event.target.dataset[this.closeButtonData] !== undefined) {
-                this.close();
+            if (event.target instanceof HTMLElement) {
+                if (!event.target.closest(this.contentData) || event.target.dataset[this.closeButtonData] !== undefined) {
+                    this.close();
+                }
             }
         });
     }
@@ -65,13 +67,13 @@ export class Modal {
 }
 export class DescriptionModal extends Modal {
     fieldData;
-    constructor(element, fieldDataValue, options) {
-        super(element, options);
+    constructor(element, contentData, fieldDataValue, options) {
+        super(element, contentData, options);
         this.fieldData = fieldDataValue;
     }
     fill(cat) {
-        const outputs = this.content.querySelectorAll(this.fieldData);
-        outputs.forEach(output => {
+        const fields = this.content.querySelectorAll(this.fieldData);
+        fields.forEach(output => {
             if (output instanceof HTMLImageElement) {
                 output.src = cat.image;
                 output.alt = `Cat named ${cat.name}`;
@@ -80,5 +82,6 @@ export class DescriptionModal extends Modal {
                 output.innerHTML = cat[output.dataset.info] !== "" ? cat[output.dataset.info] : "Information is not provided";
             }
         });
+        return this;
     }
 }
