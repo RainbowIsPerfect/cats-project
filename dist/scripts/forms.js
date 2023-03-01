@@ -1,3 +1,4 @@
+import { formInputsData } from "./variables.js";
 class Form {
     $form;
     constructor($form) {
@@ -6,12 +7,12 @@ class Form {
     createCatObject(id) {
         const catObject = {
             id: id || Date.now(),
-            name: this.$form.elements['name'].value,
-            image: this.$form.elements['image'].value,
-            age: Number(this.$form.elements['age'].value),
-            rate: Number(this.$form.elements['rate'].value),
-            favorite: this.$form.elements['favorite'].checked,
-            description: this.$form.elements['description'].value
+            name: this.$form.elements[formInputsData.name].value,
+            image: this.$form.elements[formInputsData.image].value,
+            age: Number(this.$form.elements[formInputsData.age].value),
+            rate: Number(this.$form.elements[formInputsData.rate].value),
+            favorite: this.$form.elements[formInputsData.favorite].checked,
+            description: this.$form.elements[formInputsData.description].value
         };
         return catObject;
     }

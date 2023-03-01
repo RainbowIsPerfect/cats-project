@@ -1,10 +1,12 @@
-export const localStorageKey = 'cat';
-export const activeIconClass = "card__action-button-icon--active";
-export const bodyHiddenClass = "hidden";
-export const modalActiveClass = "modal--active";
-export const modalContentActiveClass = "modal__content--active";
-export const fieldDataValue = '[data-info]';
-export const cardDataValue = '[data-id]';
+export const LOCAL_STORAGE_KEY = 'cat';
+export const ACTIVE_ICON_CLASS = "card__action-button-icon--active";
+export const BODY_HIDDEN_CLASS = "hidden";
+export const MODAL_ACTIVE_CLASS = "modal--active";
+export const MODAL_CONTENT_ACTIVE_CLASS = "modal__content--active";
+export const FIELD_DATA = '[data-info]';
+export const CARD_DATA = '[data-id]';
+export const LIKE_ICON_DATA = '[data-like]';
+export const MODAL_CONTENT_DATA = "[data-content]";
 export const buttonActionsData = {
     delete: 'delete',
     edit: 'edit',
@@ -17,7 +19,15 @@ export const cardFieldsData = {
     action: 'data-action',
     image: 'data-image',
 };
-export const $cardContainer = document.querySelector(".card-container");
+export const formInputsData = {
+    name: 'name',
+    image: 'image',
+    rate: 'rate',
+    age: 'age',
+    favorite: 'favorite',
+    description: 'description'
+};
+export const $cardContainer = document.querySelector("[data-container]");
 export const $addModal = document.querySelector("[data-modal='add']");
 export const $editModal = document.querySelector("[data-modal='edit']");
 export const $readMoreModal = document.querySelector("[data-modal='read']");
